@@ -18,7 +18,8 @@
   "license": "MIT",
   "author": "Max <mrliucan@foxmail.com>",
   "files": [
-    "dist"
+    "dist",
+    "assets"
   ],
   "main": "dist/spa-github-pages-cli.js",
   "module": "dist/spa-github-pages-cli.es5.js",
