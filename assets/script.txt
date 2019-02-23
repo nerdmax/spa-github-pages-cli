@@ -1,4 +1,9 @@
 <!-- Start Single Page Apps for GitHub Pages -->
+<!-- NOTE: The script tag below is added by spa-github-pages-cli,
+https://github.com/nerdmax/spa-github-pages-cli. Please don't delete it if
+you want to host your single page apps with GitHub Pages. Feel free to submit
+an issue on https://github.com/nerdmax/spa-github-pages-cli/issues/new if you
+encountered one. -->
 <script type="text/javascript">
   // Single Page Apps for GitHub Pages
   // https://github.com/rafrex/spa-github-pages

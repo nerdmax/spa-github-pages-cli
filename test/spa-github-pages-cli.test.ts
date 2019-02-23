@@ -125,8 +125,9 @@ describe('addScriptToIndexHtml', () => {
         xmlMode: true
       })
       const expectedScriptStartComment = $script.root()[0].children[0].data
-      const expectedScriptMainContent = $script.root()[0].children[2].children[0].data
-      const expectedScriptEndComment = $script.root()[0].children[4].data
+      const expectedNoteComment = $script.root()[0].children[2].data
+      const expectedScriptMainContent = $script.root()[0].children[4].children[0].data
+      const expectedScriptEndComment = $script.root()[0].children[6].data
 
       const copiedIndexHtmlContent = await fs.readFile(
         path.join(__dirname, 'docs/index.html'),
@@ -134,12 +135,14 @@ describe('addScriptToIndexHtml', () => {
       )
       const $index = cheerio.load(copiedIndexHtmlContent)
       const childrenLength = $index('head')[0].children.length
-      const actualScriptStartComment = $index('head')[0].children[childrenLength - 6].data
+      const actualScriptStartComment = $index('head')[0].children[childrenLength - 8].data
+      const actualNoteComment = $index('head')[0].children[childrenLength - 6].data
       const actualScriptMainContent = $index('head')[0].children[childrenLength - 4].children[0]
         .data
       const actualScriptEndComment = $index('head')[0].children[childrenLength - 2].data
 
       expect(actualScriptStartComment).toEqual(expectedScriptStartComment)
+      expect(actualNoteComment).toEqual(expectedNoteComment)
       expect(actualScriptMainContent).toEqual(expectedScriptMainContent)
       expect(actualScriptEndComment).toEqual(expectedScriptEndComment)
     })
