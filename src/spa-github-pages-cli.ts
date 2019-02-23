@@ -67,13 +67,20 @@ const addScriptToIndexHtml = async (baseDir: string, docsFolderName: string): Pr
   const scriptContent = await fs.readFile(scriptFilePath, 'utf8')
   const $index = cheerio.load(indexHtmlContent)
 
-  // Append spa script to head tag
-  $index('head').append(scriptContent)
+  if ($index.html().includes(scriptContent)) {
+    log(
+      'It seems you have already added the SPA script, you only need one script for index.html',
+      'info'
+    )
+  } else {
+    // Append spa script to head tag
+    $index('head').append(scriptContent)
 
-  // Over write old index file with updated one
-  await fs.writeFile(indexHtmlFilePath, $index.html())
+    // Over write old index file with updated one
+    await fs.writeFile(indexHtmlFilePath, $index.html())
 
-  log('Add script to index.html successfully!!!', 'info')
+    log('Add script to index.html successfully!!!', 'info')
+  }
 }
 
 const makeGHPageSPAFactory = (

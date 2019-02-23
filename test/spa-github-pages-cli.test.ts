@@ -148,6 +148,49 @@ describe('addScriptToIndexHtml', () => {
     })
   })
 
+  describe('with index.html and spa script existed', () => {
+    it('adds scripts to index.html only once', async () => {
+      await addScriptToIndexHtml(baseDir, docsFolderName)
+      await addScriptToIndexHtml(baseDir, docsFolderName)
+
+      const scriptContent = await fs.readFile(path.join(__dirname, '../assets/script.txt'), 'utf8')
+      const $script = cheerio.load(scriptContent, {
+        xmlMode: true
+      })
+      const scriptStartComment = $script.root()[0].children[0].data
+      const noteComment = $script.root()[0].children[2].data
+      const scriptMainContent = $script.root()[0].children[4].children[0].data
+      const scriptEndComment = $script.root()[0].children[6].data
+
+      const copiedIndexHtmlContent = await fs.readFile(
+        path.join(__dirname, 'docs/index.html'),
+        'utf8'
+      )
+      const $index = cheerio.load(copiedIndexHtmlContent)
+      const $indexHeadChildren = $index('head')[0].children
+      const actualScriptStartComment = $indexHeadChildren.filter(
+        $indexHeadChild => $indexHeadChild.data === scriptStartComment
+      )
+      const actualNoteComment = $indexHeadChildren.filter(
+        $indexHeadChild => $indexHeadChild.data === noteComment
+      )
+      const actualScriptMainContent = $indexHeadChildren.filter(
+        $indexHeadChild =>
+          $indexHeadChild.children &&
+          $indexHeadChild.children[0] &&
+          $indexHeadChild.children[0].data === scriptMainContent
+      )
+      const actualScriptEndComment = $indexHeadChildren.filter(
+        $indexHeadChild => $indexHeadChild.data === scriptEndComment
+      )
+
+      expect(actualScriptStartComment.length).toEqual(1)
+      expect(actualNoteComment.length).toEqual(1)
+      expect(actualScriptMainContent.length).toEqual(1)
+      expect(actualScriptEndComment.length).toEqual(1)
+    })
+  })
+
   describe('with index.html not existed', () => {
     it('throws error', async () => {
       await fs.remove(path.join(__dirname, 'docs/index.html'))
