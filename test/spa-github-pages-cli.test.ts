@@ -165,7 +165,7 @@ describe('addScriptToIndexHtml', () => {
   const docsFolderName = 'docs'
 
   describe('with index.html existed', () => {
-    it('adds scripts to index.html', async () => {
+    it("adds script to the top of the index.html's head tag", async () => {
       await addScriptToIndexHtml(baseDir, docsFolderName)
 
       const scriptContent = await fs.readFile(path.join(__dirname, '../assets/script.txt'), 'utf8')
@@ -182,12 +182,10 @@ describe('addScriptToIndexHtml', () => {
         'utf8'
       )
       const $index = cheerio.load(copiedIndexHtmlContent)
-      const childrenLength = $index('head')[0].children.length
-      const actualScriptStartComment = $index('head')[0].children[childrenLength - 8].data
-      const actualNoteComment = $index('head')[0].children[childrenLength - 6].data
-      const actualScriptMainContent = $index('head')[0].children[childrenLength - 4].children[0]
-        .data
-      const actualScriptEndComment = $index('head')[0].children[childrenLength - 2].data
+      const actualScriptStartComment = $index('head')[0].children[0].data
+      const actualNoteComment = $index('head')[0].children[2].data
+      const actualScriptMainContent = $index('head')[0].children[4].children[0].data
+      const actualScriptEndComment = $index('head')[0].children[6].data
 
       expect(actualScriptStartComment).toEqual(expectedScriptStartComment)
       expect(actualNoteComment).toEqual(expectedNoteComment)
@@ -197,7 +195,7 @@ describe('addScriptToIndexHtml', () => {
   })
 
   describe('with index.html and spa script existed', () => {
-    it('adds scripts to index.html only once', async () => {
+    it('adds script to the index.html only once', async () => {
       await addScriptToIndexHtml(baseDir, docsFolderName)
       await addScriptToIndexHtml(baseDir, docsFolderName)
 

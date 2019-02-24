@@ -97,7 +97,7 @@ const addScriptToIndexHtml = async (baseDir: string, docsFolderName: string): Pr
     )
   } else {
     // Append spa script to head tag
-    $index('head').append(scriptContent)
+    $index('head').prepend(scriptContent)
 
     // Over write old index file with updated one
     await fs.writeFile(indexHtmlFilePath, $index.html())
