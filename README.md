@@ -23,6 +23,7 @@
 - [SPA github pages cli](#spa-github-pages-cli)
   - [Installation](#installation)
   - [Basic Usage](#basic-usage)
+  - [Advance Usage](#advance-usage)
   - [Contributing](#contributing)
   - [Contributors](#contributors)
 
@@ -41,7 +42,7 @@ yarn add spa-github-pages-cli --dev
 Add to your npm script:
 
 ```json
-"spa-github-pages": "spa-github-pages -d 'docs'",
+"spa-github-pages": "spa-github-pages",
 ```
 
 Run npm script:
@@ -54,6 +55,20 @@ yarn spa-github-pages
 ```shell
 // npm
 npm run spa-github-pages
+```
+
+## Advance Usage
+
+Set the folder's name that contains index.html. (The default value is docs)
+
+```json
+"spa-github-pages": "spa-github-pages -d 'your_custom_folder'",
+```
+
+Set customDomain to true if you are using a custom domain. (The default value is false)
+
+```json
+"spa-github-pages": "spa-github-pages -c",
 ```
 
 ## Contributing
