@@ -910,6 +910,12 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-type-alias tsd-is-not-exported">
+			<a href="globals.html#args" class="tsd-kind-icon">Args</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-is-not-exported">
+			<a href="globals.html#config" class="tsd-kind-icon">Config</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-is-not-exported">
 			<a href="globals.html#loglevel" class="tsd-kind-icon">Log<wbr>Level</a>
 		</li>
 		<li class=" tsd-kind-variable tsd-is-not-exported">
@@ -925,9 +931,6 @@ img { max-width: 100%; }
 			<a href="globals.html#addscripttoindexhtml" class="tsd-kind-icon">add<wbr>Script<wbr>ToIndex<wbr>Html</a>
 		</li>
 		<li class=" tsd-kind-function tsd-is-not-exported">
-			<a href="globals.html#getdocsfoldername" class="tsd-kind-icon">get<wbr>Docs<wbr>Folder<wbr>Name</a>
-		</li>
-		<li class=" tsd-kind-function tsd-is-not-exported">
 			<a href="globals.html#log" class="tsd-kind-icon">log</a>
 		</li>
 		<li class=" tsd-kind-function tsd-is-not-exported">
@@ -935,6 +938,12 @@ img { max-width: 100%; }
 		</li>
 		<li class=" tsd-kind-function tsd-is-not-exported">
 			<a href="globals.html#makeghpagespafactory" class="tsd-kind-icon">makeGHPageSPAFactory</a>
+		</li>
+		<li class=" tsd-kind-function tsd-is-not-exported">
+			<a href="globals.html#parseconfig" class="tsd-kind-icon">parse<wbr>Config</a>
+		</li>
+		<li class=" tsd-kind-function tsd-is-not-exported">
+			<a href="globals.html#parsedocsfoldername" class="tsd-kind-icon">parse<wbr>Docs<wbr>Folder<wbr>Name</a>
 		</li>
 	</ul>
 </nav>
@@ -963,6 +972,7 @@ img { max-width: 100%; }
 				<li><a href="#spa-github-pages-cli">SPA github pages cli</a><ul>
 						<li><a href="#installation">Installation</a></li>
 						<li><a href="#basic-usage">Basic Usage</a></li>
+						<li><a href="#advance-usage">Advance Usage</a></li>
 						<li><a href="#contributing">Contributing</a></li>
 						<li><a href="#contributors">Contributors</a></li>
 					</ul>
@@ -976,12 +986,17 @@ npm install --save spa-github-pages-cli --dev
 yarn add spa-github-pages-cli --dev</code></pre>
 			<h2 id="basic-usage">Basic Usage</h2>
 			<p>Add to your npm script:</p>
-			<pre><code class="language-json">&quot;spa-github-pages&quot;: &quot;spa-github-pages -d &#39;docs&#39;&quot;,</code></pre>
+			<pre><code class="language-json">&quot;spa-github-pages&quot;: &quot;spa-github-pages&quot;,</code></pre>
 			<p>Run npm script:</p>
 			<pre><code class="language-shell">// yarn
 yarn spa-github-pages</code></pre>
 			<pre><code class="language-shell">// npm
 npm run spa-github-pages</code></pre>
+			<h2 id="advance-usage">Advance Usage</h2>
+			<p>Set the folder&#39;s name that contains index.html. (The default value is docs)</p>
+			<pre><code class="language-json">&quot;spa-github-pages&quot;: &quot;spa-github-pages -d &#39;your_custom_folder&#39;&quot;,</code></pre>
+			<p>Set customDomain to true if you are using a custom domain. (The default value is false)</p>
+			<pre><code class="language-json">&quot;spa-github-pages&quot;: &quot;spa-github-pages -c&quot;,</code></pre>
 			<h2 id="contributing">Contributing</h2>
 			<ol>
 				<li>Fork it (<a href="https://github.com/nerdmax/spa-github-pages-cli/fork">https://github.com/nerdmax/spa-github-pages-cli/fork</a>)</li>
@@ -1012,6 +1027,8 @@ npm run spa-github-pages</code></pre>
 					<section class="tsd-index-section tsd-is-not-exported">
 						<h3>Type aliases</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#args" class="tsd-kind-icon">Args</a></li>
+							<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#config" class="tsd-kind-icon">Config</a></li>
 							<li class="tsd-kind-type-alias tsd-is-not-exported"><a href="globals.html#loglevel" class="tsd-kind-icon">Log<wbr>Level</a></li>
 						</ul>
 					</section>
@@ -1027,10 +1044,11 @@ npm run spa-github-pages</code></pre>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#add404html" class="tsd-kind-icon">add404<wbr>Html</a></li>
 							<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#addscripttoindexhtml" class="tsd-kind-icon">add<wbr>Script<wbr>ToIndex<wbr>Html</a></li>
-							<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#getdocsfoldername" class="tsd-kind-icon">get<wbr>Docs<wbr>Folder<wbr>Name</a></li>
 							<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#log" class="tsd-kind-icon">log</a></li>
 							<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#logprojectname" class="tsd-kind-icon">log<wbr>Project<wbr>Name</a></li>
 							<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#makeghpagespafactory" class="tsd-kind-icon">makeGHPageSPAFactory</a></li>
+							<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#parseconfig" class="tsd-kind-icon">parse<wbr>Config</a></li>
+							<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#parsedocsfoldername" class="tsd-kind-icon">parse<wbr>Docs<wbr>Folder<wbr>Name</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1039,12 +1057,48 @@ npm run spa-github-pages</code></pre>
 		<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 			<h2>Type aliases</h2>
 			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
+				<a name="args" class="tsd-anchor"></a>
+				<h3>Args</h3>
+				<div class="tsd-signature tsd-kind-icon">Args<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/35d55d0/src/spa-github-pages-cli.ts#L8">spa-github-pages-cli.ts:8</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter-index-signature">
+							<h5><span class="tsd-signature-symbol">[</span>x: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></h5>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
+				<a name="config" class="tsd-anchor"></a>
+				<h3>Config</h3>
+				<div class="tsd-signature tsd-kind-icon">Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/35d55d0/src/spa-github-pages-cli.ts#L10">spa-github-pages-cli.ts:10</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter">
+							<h5>is<wbr>Custom<wbr>Domain<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-is-not-exported">
 				<a name="loglevel" class="tsd-anchor"></a>
 				<h3>Log<wbr>Level</h3>
 				<div class="tsd-signature tsd-kind-icon">Log<wbr>Level<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"error"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"info"</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/8ee87ad/src/spa-github-pages-cli.ts#L20">spa-github-pages-cli.ts:20</a></li>
+						<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/35d55d0/src/spa-github-pages-cli.ts#L24">spa-github-pages-cli.ts:24</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1054,10 +1108,10 @@ npm run spa-github-pages</code></pre>
 			<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
 				<a name="argv" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> argv</h3>
-				<div class="tsd-signature tsd-kind-icon">argv<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;yargs.usage(&#x27;Usage: $0 &lt;command&gt; [options]&#x27;).command(&#x27;$0&#x27;,&#x27;This cli tool can make your site SPA friendly when hosting by github pages&#x27;,{},makeGHPageSPA).example(&#x27;$0 -d foo.js&#x27;, &#x27;count the lines in the given file&#x27;).alias(&#x27;d&#x27;, &#x27;docs&#x27;).string(&#x27;d&#x27;).describe(&#x27;d&#x27;, &quot;The folder&#x27;s name that contains index.html&quot;).help(&#x27;h&#x27;).alias(&#x27;h&#x27;, &#x27;help&#x27;).epilog(&#x27;for more information, find our manual at http://example.com&#x27;).default({ d: &#x27;docs&#x27; }).argv</span></div>
+				<div class="tsd-signature tsd-kind-icon">argv<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;yargs.usage(&#x27;Usage: $0 &lt;command&gt; [options]&#x27;).command(&#x27;$0&#x27;,&#x27;This cli tool can make your site SPA friendly when hosting by github pages&#x27;,{},makeGHPageSPA).example(&#x27;$0 -d /docs&#x27;, &#x27;make the website under /docs folder SPA friendly with github&#x27;).alias(&#x27;d&#x27;, &#x27;docs&#x27;).string(&#x27;d&#x27;).describe(&#x27;d&#x27;, &quot;The folder&#x27;s name that contains index.html&quot;).alias(&#x27;c&#x27;, &#x27;customDomain&#x27;).boolean(&#x27;c&#x27;).describe(&#x27;c&#x27;, &#x27;Set to true if you are using a custom domain&#x27;).help(&#x27;h&#x27;).alias(&#x27;h&#x27;, &#x27;help&#x27;).epilog(&#x27;for more information, find our manual at http://example.com&#x27;).default({ d: &#x27;docs&#x27;, c: false }).argv</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/8ee87ad/src/index.ts#L5">index.ts:5</a></li>
+						<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/35d55d0/src/index.ts#L5">index.ts:5</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-type-declaration">
@@ -1069,10 +1123,10 @@ npm run spa-github-pages</code></pre>
 			<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
 				<a name="makeghpagespa" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> makeGHPageSPA</h3>
-				<div class="tsd-signature tsd-kind-icon">makeGHPageSPA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> =&nbsp;makeGHPageSPAFactory(getDocsFolderName, add404Html, addScriptToIndexHtml)</span></div>
+				<div class="tsd-signature tsd-kind-icon">makeGHPageSPA<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> =&nbsp;makeGHPageSPAFactory(parseDocsFolderName,parseConfig,add404Html,addScriptToIndexHtml)</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/8ee87ad/src/spa-github-pages-cli.ts#L109">spa-github-pages-cli.ts:109</a></li>
+						<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/35d55d0/src/spa-github-pages-cli.ts#L134">spa-github-pages-cli.ts:134</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1083,13 +1137,13 @@ npm run spa-github-pages</code></pre>
 				<a name="add404html" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> add404<wbr>Html</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-					<li class="tsd-signature tsd-kind-icon">add404<wbr>Html<span class="tsd-signature-symbol">(</span>baseDir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, docsFolderName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">add404<wbr>Html<span class="tsd-signature-symbol">(</span>baseDir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, docsFolderName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, __namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/8ee87ad/src/spa-github-pages-cli.ts#L38">spa-github-pages-cli.ts:38</a></li>
+								<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/35d55d0/src/spa-github-pages-cli.ts#L46">spa-github-pages-cli.ts:46</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1099,6 +1153,14 @@ npm run spa-github-pages</code></pre>
 							</li>
 							<li>
 								<h5>docsFolderName: <span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li>
+								<h5>__namedParameters: <span class="tsd-signature-type">object</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>is<wbr>Custom<wbr>Domain<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+									</li>
+								</ul>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1115,7 +1177,7 @@ npm run spa-github-pages</code></pre>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/8ee87ad/src/spa-github-pages-cli.ts#L55">spa-github-pages-cli.ts:55</a></li>
+								<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/35d55d0/src/spa-github-pages-cli.ts#L78">spa-github-pages-cli.ts:78</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1132,34 +1194,6 @@ npm run spa-github-pages</code></pre>
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
-				<a name="getdocsfoldername" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagConst">Const</span> get<wbr>Docs<wbr>Folder<wbr>Name</h3>
-				<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Docs<wbr>Folder<wbr>Name<span class="tsd-signature-symbol">(</span>argv<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/8ee87ad/src/spa-github-pages-cli.ts#L34">spa-github-pages-cli.ts:34</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> argv: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-index-signature">
-										<h5><span class="tsd-signature-symbol">[</span>x: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
-									</li>
-								</ul>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
 				<a name="log" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> log</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
@@ -1169,7 +1203,7 @@ npm run spa-github-pages</code></pre>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/8ee87ad/src/spa-github-pages-cli.ts#L22">spa-github-pages-cli.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/35d55d0/src/spa-github-pages-cli.ts#L26">spa-github-pages-cli.ts:26</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1195,7 +1229,7 @@ npm run spa-github-pages</code></pre>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/8ee87ad/src/spa-github-pages-cli.ts#L8">spa-github-pages-cli.ts:8</a></li>
+								<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/35d55d0/src/spa-github-pages-cli.ts#L12">spa-github-pages-cli.ts:12</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1206,19 +1240,22 @@ npm run spa-github-pages</code></pre>
 				<a name="makeghpagespafactory" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> makeGHPageSPAFactory</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-					<li class="tsd-signature tsd-kind-icon">makeGHPageSPAFactory<span class="tsd-signature-symbol">(</span>getDocsFolder<span class="tsd-signature-symbol">: </span><a href="" class="tsd-signature-type">getDocsFolderName</a>, add404<span class="tsd-signature-symbol">: </span><a href="" class="tsd-signature-type">add404Html</a>, addScript<span class="tsd-signature-symbol">: </span><a href="" class="tsd-signature-type">addScriptToIndexHtml</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></li>
+					<li class="tsd-signature tsd-kind-icon">makeGHPageSPAFactory<span class="tsd-signature-symbol">(</span>getDocsFolder<span class="tsd-signature-symbol">: </span><a href="" class="tsd-signature-type">parseDocsFolderName</a>, getConfig<span class="tsd-signature-symbol">: </span><a href="" class="tsd-signature-type">parseConfig</a>, add404<span class="tsd-signature-symbol">: </span><a href="" class="tsd-signature-type">add404Html</a>, addScript<span class="tsd-signature-symbol">: </span><a href="" class="tsd-signature-type">addScriptToIndexHtml</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/8ee87ad/src/spa-github-pages-cli.ts#L86">spa-github-pages-cli.ts:86</a></li>
+								<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/35d55d0/src/spa-github-pages-cli.ts#L109">spa-github-pages-cli.ts:109</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>getDocsFolder: <a href="" class="tsd-signature-type">getDocsFolderName</a></h5>
+								<h5>getDocsFolder: <a href="" class="tsd-signature-type">parseDocsFolderName</a></h5>
+							</li>
+							<li>
+								<h5>getConfig: <a href="" class="tsd-signature-type">parseConfig</a></h5>
 							</li>
 							<li>
 								<h5>add404: <a href="" class="tsd-signature-type">add404Html</a></h5>
@@ -1228,6 +1265,52 @@ npm run spa-github-pages</code></pre>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
+				<a name="parseconfig" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> parse<wbr>Config</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
+					<li class="tsd-signature tsd-kind-icon">parse<wbr>Config<span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">?: </span><a href="globals.html#args" class="tsd-signature-type">Args</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#config" class="tsd-signature-type">Config</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/35d55d0/src/spa-github-pages-cli.ts#L42">spa-github-pages-cli.ts:42</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> args: <a href="globals.html#args" class="tsd-signature-type">Args</a><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="globals.html#config" class="tsd-signature-type">Config</a></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
+				<a name="parsedocsfoldername" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> parse<wbr>Docs<wbr>Folder<wbr>Name</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
+					<li class="tsd-signature tsd-kind-icon">parse<wbr>Docs<wbr>Folder<wbr>Name<span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">?: </span><a href="globals.html#args" class="tsd-signature-type">Args</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/nerdmax/spa-github-pages-cli/blob/35d55d0/src/spa-github-pages-cli.ts#L38">spa-github-pages-cli.ts:38</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> args: <a href="globals.html#args" class="tsd-signature-type">Args</a><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 					</li>
 				</ul>
 			</section>
