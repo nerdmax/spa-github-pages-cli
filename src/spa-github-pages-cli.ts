@@ -5,6 +5,10 @@ import * as figlet from 'figlet'
 import * as fs from 'fs-extra'
 import * as path from 'path'
 
+type Args = { [x: string]: string | boolean }
+
+type Config = { isCustomDomain: boolean }
+
 const logProjectName = () => {
   console.log(
     chalk.green(
@@ -31,12 +35,20 @@ const log = (message: any, logLevel: LogLevel) => {
   }
 }
 
-const getDocsFolderName = (argv: { [x: string]: string } = {}): string => {
-  return argv.docs || argv.d || 'docs'
+const parseDocsFolderName = (args: Args = {}): string => {
+  return ((args.docs || args.d) as string) || 'docs'
 }
 
-const add404Html = async (baseDir: string, docsFolderName: string): Promise<void> => {
-  const srcFilePath = path.join(__dirname, '../assets/404.html')
+const parseConfig = (args: Args = {}): Config => {
+  return { isCustomDomain: ((args.customDomain || args.c) as boolean) || false }
+}
+
+const add404Html = async (
+  baseDir: string,
+  docsFolderName: string,
+  { isCustomDomain }: Config
+): Promise<void> => {
+  const src404HtmlFilePath = path.join(__dirname, '../assets/404.html')
   const destPath = path.join(baseDir, docsFolderName)
   const destFilePath = path.join(destPath, '404.html')
 
@@ -47,7 +59,18 @@ const add404Html = async (baseDir: string, docsFolderName: string): Promise<void
     throw new Error("docs folder doesn't exist. Please check if you passed the correct docs folder")
   }
 
-  await fs.copy(srcFilePath, destFilePath)
+  const src404HtmlContent = await fs.readFile(src404HtmlFilePath, 'utf8')
+  let processedSrc404HtmlContent: string
+  if (!isCustomDomain) {
+    processedSrc404HtmlContent = src404HtmlContent.replace(
+      'var segmentCount = 0',
+      'var segmentCount = 1'
+    )
+  } else {
+    processedSrc404HtmlContent = src404HtmlContent
+  }
+
+  await fs.writeFile(destFilePath, processedSrc404HtmlContent)
 
   log('Add 404.html successfully!!!', 'info')
 }
@@ -84,16 +107,18 @@ const addScriptToIndexHtml = async (baseDir: string, docsFolderName: string): Pr
 }
 
 const makeGHPageSPAFactory = (
-  getDocsFolder: typeof getDocsFolderName,
+  getDocsFolder: typeof parseDocsFolderName,
+  getConfig: typeof parseConfig,
   add404: typeof add404Html,
   addScript: typeof addScriptToIndexHtml
-) => (argv: any) => {
+) => (args: Args) => {
   logProjectName()
 
   const baseDir = process.cwd()
-  const docsFolderName = getDocsFolder(argv)
+  const docsFolderName = getDocsFolder(args)
+  const config = getConfig(args)
 
-  Promise.all([add404(baseDir, docsFolderName), addScript(baseDir, docsFolderName)])
+  Promise.all([add404(baseDir, docsFolderName, config), addScript(baseDir, docsFolderName)])
     .then(() => {
       log(
         'ALL DONE! Your site is now SPA on github page. Publish it to github and enjoy contributing to open source! :)',
@@ -106,12 +131,20 @@ const makeGHPageSPAFactory = (
     })
 }
 
-const makeGHPageSPA = makeGHPageSPAFactory(getDocsFolderName, add404Html, addScriptToIndexHtml)
+const makeGHPageSPA = makeGHPageSPAFactory(
+  parseDocsFolderName,
+  parseConfig,
+  add404Html,
+  addScriptToIndexHtml
+)
 
 export {
+  Args,
+  Config,
   logProjectName,
   log,
-  getDocsFolderName,
+  parseDocsFolderName,
+  parseConfig,
   add404Html,
   addScriptToIndexHtml,
   makeGHPageSPAFactory,

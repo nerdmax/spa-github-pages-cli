@@ -6,11 +6,18 @@ import * as path from 'path'
 import {
   add404Html,
   addScriptToIndexHtml,
-  getDocsFolderName,
+  Args,
+  Config,
   log,
   logProjectName,
-  makeGHPageSPAFactory
+  makeGHPageSPAFactory,
+  parseConfig,
+  parseDocsFolderName
 } from '../src/spa-github-pages-cli'
+
+const mockedInitConfig: Config = {
+  isCustomDomain: false
+}
 
 beforeEach(async () => {
   jest.clearAllMocks()
@@ -65,22 +72,40 @@ describe('getDocsFolderName', () => {
 
   describe('with docs passed in', () => {
     it('returns mocked folder name', () => {
-      const actualFolderName = getDocsFolderName({ docs: mockedFolderName })
-      expect(actualFolderName).toBe(mockedFolderName)
+      expect(parseDocsFolderName({ docs: mockedFolderName })).toBe(mockedFolderName)
     })
   })
 
   describe('with d passed in', () => {
     it('returns mocked folder name', () => {
-      const actualFolderName = getDocsFolderName({ d: mockedFolderName })
-      expect(actualFolderName).toBe(mockedFolderName)
+      expect(parseDocsFolderName({ d: mockedFolderName })).toBe(mockedFolderName)
     })
   })
 
   describe('with nothing passed in', () => {
-    it('returns default folder name', () => {
-      const actualFolderName = getDocsFolderName()
-      expect(actualFolderName).toBe('docs')
+    it('returns docs', () => {
+      expect(parseDocsFolderName()).toBe('docs')
+    })
+  })
+})
+
+describe('parseConfig', () => {
+  const mockedIsCustomDomain = true
+  describe('with customDomain passed in', () => {
+    it('returns mocked isCustomDomain', () => {
+      expect(parseConfig({ customDomain: true })).toEqual({ isCustomDomain: mockedIsCustomDomain })
+    })
+  })
+
+  describe('with c passed in', () => {
+    it('returns mocked isCustomDomain', () => {
+      expect(parseConfig({ c: true })).toEqual({ isCustomDomain: mockedIsCustomDomain })
+    })
+  })
+
+  describe('with nothing passed in', () => {
+    it('returns false', () => {
+      expect(parseConfig()).toEqual({ isCustomDomain: false })
     })
   })
 })
@@ -90,11 +115,34 @@ describe('add404Html', () => {
   const docsFolderName = 'docs'
 
   describe('with docs dir existed', () => {
-    it('copies 404.html', async () => {
-      await add404Html(baseDir, docsFolderName)
-      const original404HtmlContent = await fs.readFile(path.join(__dirname, '../assets/404.html'))
-      const copied404HtmlContent = await fs.readFile(path.join(__dirname, 'docs/404.html'))
-      expect(original404HtmlContent).toEqual(copied404HtmlContent)
+    describe('with isCustomDomain set to false', () => {
+      it('copies 404.html and changes segmentCount to 1', async () => {
+        await add404Html(baseDir, docsFolderName, mockedInitConfig)
+        const original404HtmlContent = (await fs.readFile(
+          path.join(__dirname, '../assets/404.html'),
+          'utf8'
+        )).replace('var segmentCount = 0', 'var segmentCount = 1')
+        const copied404HtmlContent = await fs.readFile(
+          path.join(__dirname, 'docs/404.html'),
+          'utf8'
+        )
+        expect(original404HtmlContent).toEqual(copied404HtmlContent)
+      })
+    })
+
+    describe('with isCustomDomain set to true', () => {
+      it('copies 404.html', async () => {
+        await add404Html(baseDir, docsFolderName, { ...mockedInitConfig, isCustomDomain: true })
+        const original404HtmlContent = await fs.readFile(
+          path.join(__dirname, '../assets/404.html'),
+          'utf8'
+        )
+        const copied404HtmlContent = await fs.readFile(
+          path.join(__dirname, 'docs/404.html'),
+          'utf8'
+        )
+        expect(original404HtmlContent).toEqual(copied404HtmlContent)
+      })
     })
   })
 
@@ -102,7 +150,7 @@ describe('add404Html', () => {
     it('throws error', async () => {
       await fs.remove(path.join(__dirname, 'docs'))
       try {
-        await add404Html(baseDir, docsFolderName)
+        await add404Html(baseDir, docsFolderName, mockedInitConfig)
       } catch (error) {
         expect(error.message).toEqual(
           "docs folder doesn't exist. Please check if you passed the correct docs folder"
@@ -212,14 +260,23 @@ describe('makeGHPageSPAFactory', () => {
 
   describe('with everything working fine', () => {
     it('calls functions with desired parameters', () => {
-      const mockedGetDocsFolderName = jest.fn().mockReturnValue(mockedFolderName)
+      const mockedParseDocsFolderName = jest.fn().mockReturnValue(mockedFolderName)
+      const mockedParseConfig = jest.fn().mockReturnValue(mockedInitConfig)
       const mockedAdd404Html = jest.fn()
       const mockedAddScriptToIndexHtml = jest.fn()
-      makeGHPageSPAFactory(mockedGetDocsFolderName, mockedAdd404Html, mockedAddScriptToIndexHtml)(
-        mockedArgv
+      makeGHPageSPAFactory(
+        mockedParseDocsFolderName,
+        mockedParseConfig,
+        mockedAdd404Html,
+        mockedAddScriptToIndexHtml
+      )(mockedArgv)
+      expect(mockedParseDocsFolderName).toHaveBeenCalledWith(mockedArgv)
+      expect(mockedParseConfig).toHaveBeenCalledWith(mockedArgv)
+      expect(mockedAdd404Html).toHaveBeenCalledWith(
+        process.cwd(),
+        mockedFolderName,
+        mockedInitConfig
       )
-      expect(mockedGetDocsFolderName).toHaveBeenCalledWith(mockedArgv)
-      expect(mockedAdd404Html).toHaveBeenCalledWith(process.cwd(), mockedFolderName)
       expect(mockedAddScriptToIndexHtml).toHaveBeenCalledWith(process.cwd(), mockedFolderName)
     })
   })
@@ -227,11 +284,15 @@ describe('makeGHPageSPAFactory', () => {
   describe('with promise throwing error', () => {
     it('throws error', () => {
       const mockedGetDocsFolderName = jest.fn()
+      const mockedParseConfig = jest.fn()
       const mockedAdd404Html = jest.fn().mockRejectedValue(mockedError)
       const mockedAddScriptToIndexHtml = jest.fn()
-      makeGHPageSPAFactory(mockedGetDocsFolderName, mockedAdd404Html, mockedAddScriptToIndexHtml)(
-        mockedArgv
-      )
+      makeGHPageSPAFactory(
+        mockedGetDocsFolderName,
+        mockedParseConfig,
+        mockedAdd404Html,
+        mockedAddScriptToIndexHtml
+      )(mockedArgv)
     })
   })
 })

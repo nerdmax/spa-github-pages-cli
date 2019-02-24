@@ -10,11 +10,14 @@ const argv = yargs
     {},
     makeGHPageSPA
   )
-  .example('$0 -d foo.js', 'count the lines in the given file')
+  .example('$0 -d /docs', 'make the website under /docs folder SPA friendly with github')
   .alias('d', 'docs')
   .string('d')
   .describe('d', "The folder's name that contains index.html")
+  .alias('c', 'customDomain')
+  .boolean('c')
+  .describe('c', 'Set to true if you are using a custom domain')
   .help('h')
   .alias('h', 'help')
   .epilog('for more information, find our manual at http://example.com')
-  .default({ d: 'docs' }).argv
+  .default({ d: 'docs', c: false }).argv
