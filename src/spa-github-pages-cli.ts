@@ -35,13 +35,11 @@ const log = (message: any, logLevel: LogLevel) => {
   }
 }
 
-const parseDocsFolderName = (args: Args = {}): string => {
-  return ((args.docs || args.d) as string) || 'docs'
-}
+const parseDocsFolderName = (args: Args = {}): string => ((args.docs || args.d) as string) || 'docs'
 
-const parseConfig = (args: Args = {}): Config => {
-  return { isCustomDomain: ((args.customDomain || args.c) as boolean) || false }
-}
+const parseConfig = (args: Args = {}): Config => ({
+  isCustomDomain: ((args.customDomain || args.c) as boolean) || false
+})
 
 const add404Html = async (
   baseDir: string,
