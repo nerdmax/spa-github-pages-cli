@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import yargs from 'yargs'
+import * as yargs from 'yargs'
 import { makeGHPageSPA } from './spa-github-pages-cli'
 
-const argv = yargs
+const parser = yargs
   .usage('Usage: $0 <command> [options]')
   .command(
     '$0',
@@ -17,7 +17,8 @@ const argv = yargs
   .alias('c', 'customDomain')
   .boolean('c')
   .describe('c', 'Set to true if you are using a custom domain')
-  .help('h')
-  .alias('h', 'help')
+  .default({ d: 'docs', c: false })
   .epilog('for more information, find our manual at http://example.com')
-  .default({ d: 'docs', c: false }).argv
+  .help()
+
+export { parser }
