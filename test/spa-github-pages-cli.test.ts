@@ -6,7 +6,6 @@ import * as path from 'path'
 import {
   add404Html,
   addScriptToIndexHtml,
-  Args,
   Config,
   log,
   logProjectName,
