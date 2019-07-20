@@ -13,7 +13,7 @@ module.exports = function(w) {
 
     preprocessors: {
       '**/*.js?(x)': file =>
-        require('babel-core').transform(file.content, {
+        require('@babel/core').transform(file.content, {
           sourceMap: true,
           plugins: ['transform-es2015-modules-commonjs'],
           presets: ['babel-preset-jest']
