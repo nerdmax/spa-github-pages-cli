@@ -104,7 +104,7 @@
     "yargs": "^14.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
+    "@babel/core": "^7.10.2",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@types/jest": "^24.0.0",
